@@ -6,6 +6,7 @@ Created on Fri Jun 24 16:27:01 2016
 """
 
 import numpy as np
+from numpy.linalg import inv
 from math import cos,sin,tan
 
 class quaternion:
@@ -25,6 +26,18 @@ class quaternion:
         self.qz=q0xyz[3]
         self.__rot=None
         return
+    
+    def from_mat(self,M):
+        T=np.trace(M)+1
+        
+        if T>0:
+            self.qs=np.sqrt(T)/2
+            self.qx=(M[2,1] - M[1,2])/(4*self.qs)
+            self.qy=(M[0,2] - M[2,0])/(4*self.qs)
+            self.qz=(M[1,0] - M[0,1])/(4*self.qs)
+        else:
+            raise KeyError('Trace <-1')
+        return
         
     def rot(self):
         if self.__rot is None:
@@ -43,3 +56,26 @@ class quaternion:
         R[0,2] = 2 * ( self.qx*self.qz + self.qy*self.qs )
         R[1,2] = 2 * ( self.qy*self.qz - self.qx*self.qs )
         return R
+        
+    def rotinv(self):
+        R=self.rot()
+        return inv(R)
+        
+    def conjugate(self):
+        return quaternion([self.qs, -self.qx, -self.qy, -self.qz])
+        
+    def magnitude(self):
+        return np.sqrt( np.sum(np.array([self.qs, self.qx, self.qy, self.qz])**2) )
+        
+    
+    def inverse(self):
+        """
+        Very ineffcient route. Need to code the more direct algorithm.
+        """
+        q=quaternion([1,0,0,0])
+        Rq=self.rot()
+        q.from_mat(inv(Rq))
+        return q
+        
+    
+        
