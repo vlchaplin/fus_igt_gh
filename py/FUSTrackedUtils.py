@@ -111,7 +111,7 @@ def read_fcsv(filename, nmax=None, headerlength=3):
 
     return xyz
     
-def readNDI_csv(filename, nmax=None, startcol=0):
+def readNDI_csv(filename, nmax=None, startcol=0, delimiter=','):
     """
     Returns (quats, vecs, errors) 
     
@@ -119,7 +119,7 @@ def readNDI_csv(filename, nmax=None, startcol=0):
     Quaternions, positions, and error is a returned as numpy arrays.
     """
     csvfile=open(filename)
-    reader=csv.reader(csvfile)
+    reader=csv.reader(csvfile, delimiter=delimiter)
     text=list(reader)
     csvfile.close()
     
