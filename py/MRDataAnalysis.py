@@ -83,7 +83,7 @@ def parse_scan_parts(imageset, num_dyns=None, num_parts=1, ordering=0):
     Returns: a tuple of 4D image stacks of length num_parts.
     """
     
-     if len(imageset.shape)==4:
+    if len(imageset.shape)==4:
         (nx,ny,ns,D) = imageset.shape   
     else:
         (nx,ny,ns) = imageset.shape
