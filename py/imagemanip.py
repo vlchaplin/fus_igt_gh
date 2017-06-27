@@ -129,7 +129,7 @@ def NDrebin( NDorig, inputAxisLocations, outputAxisLocations, preserve_norm=True
     
     filters = []
     for ax in range(nd):
-        filters[ax] = calc_bin2bin_Filter( inputAxisLocations[ax], outputAxisLocations[ax],preserve_norm=preserve_norm )
+        filters.append ( calc_bin2bin_Filter( inputAxisLocations[ax], outputAxisLocations[ax],preserve_norm=preserve_norm ) )
         
     for ax in range(nd-1, -1, -1):
         
