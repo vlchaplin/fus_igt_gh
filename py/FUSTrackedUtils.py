@@ -89,7 +89,7 @@ def write_fcsv(filename, vectors,filemode="w",end="\n"):
     text_file.write("# columns = id,x,y,z,ow,ox,oy,oz,vis,sel,lock,label,desc,associatedNodeID"+end)
     for i in range(len(vectors)):
         (x,y,z)=vectors[i]
-        text_file.write( "vtkMRMLMarkupsFiducialNode_%d,%0.4f,%0.4f,%0.4f,0,0,0,1,1,1,1,absphys-%d,,vtkMRMLScalarVolumeNode1"+end%(i,x,y,z,i))
+        text_file.write( ("vtkMRMLMarkupsFiducialNode_%d,%0.4f,%0.4f,%0.4f,0,0,0,1,1,1,1,absphys-%d,,vtkMRMLScalarVolumeNode1"+end)%(i,x,y,z,i))
     text_file.close()
     
 def read_fcsv(filename, nmax=None, headerlength=3):
