@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+#
+# Author: Vandiver Chaplin
+#
+# Miscellaneous routines for reading tracker geometry,
+# loading point lists and working with 3D volumes.
 
 import numpy
 import re;
